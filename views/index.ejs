@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Great Number Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script  type="text/javascript" src="/scripts/index.js"></Script>
+    </head>
+    <body>
+        <div class="container bg-light">
+            <div class="row justify-content-center">
+                <div class="col-8 bg-white m-4 border rounded">
+                    <div class="row justify-content-center">
+                        <h2 class="m-2 text-center">Welcome to the Great Number Game</h2>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h4 class="mx-2 text-center">I am thinking of a number between 1 and 100</h4>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h6 class="mx-2 my-1 text-center">Take a guess</h6>
+                    </div>
+                    <% if (sesh.guess != null ) { %>
+                        <div class="row justify-content-center my-2">
+                        <% if (sesh.guess === sesh.num ) { %>
+                            <div class="col-4 bg-success border border-dark rounded mb-4">
+                                <br>
+                                <br>
+                                <br>
+                                <h4 class="text-center text-white"><%= sesh.num %> was the number!</h4>
+                                <br>
+                                <form action="/delete" method="post">
+                                    <div class="form-row justify-content-center">
+                                        <input type="submit" class="btn btn-primary" value="Play Again!">
+                                    </div>
+                                </form>
+                                <br>
+                            </div>
+                        <% } else {%>
+                            <div class="col-4 bg-danger border border-dark rounded">
+                                <br>
+                                <br>
+                                <br>
+                                <% if (sesh.guess > sesh.num) { %>
+                                    <h4 class="text-center text-white">Too High!</h4>
+                                <% } else { %>
+                                    <h4 class="text-center text-white">Too Low!</h4>
+                                <% } %>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                        <% } %> 
+                        </div>
+                    <% } %>
+                    <% if (sesh.guess != sesh.num) { %>
+                        <div class="row justify-content-center my-2">
+                            <form action="/new" method="post">
+                                <div class="form-row justify-content-center m-2">
+                                    <input type="text" id="guess" name="guess">
+                                </div>
+                                <div class="form-row justify-content-center">
+                                    <input type="submit" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
